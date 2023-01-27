@@ -9,11 +9,11 @@ OBJS = $(patsubst $(SRC_DIR)/%.fnl, $(BUILD_DIR)/%.lua, $(SRCS))
 
 .PHONY: all
 all: $(OBJS)
-	mv $(BUILD_DIR)/* .
 
 $(BUILD_DIR)/%.lua: $(SRC_DIR)/%.fnl
 	mkdir -p $(dir $@)
 	$(FENNEL) --compile $< > $@
+	mv $@ .
 
 %.lua: $(SRC_DIR)/%.fnl
 	$(FENNEL) --compile $< > $@
